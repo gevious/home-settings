@@ -1,0 +1,105 @@
+set nocompatible " Remove vi compatability
+filetype off
+
+" Use Vundle to manage all plugins
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Use .editorconfig file to manage per-filetype settings
+Plugin 'editorconfig/editorconfig-vim'
+" Python checking on the fly
+" Plugin 'klen/python-mode'
+" Enable rust files for vim
+Plugin 'wting/rust.vim'
+
+" All plugins must be added before the following line
+call vundle#end()           " required
+filetype plugin indent on   " required
+
+" Used http://www.vi-improved.org/vimrc.php as a template
+" Basic settings
+set noexrc " Don't use local version of .(g)vimrc or .execrc
+set bg=dark " Use dark background
+set cpoptions=aABceFmqs " see help cptoptions
+syntax on " Enable sytax highlighting
+filetype on " Try detect filetypes
+filetype plugin indent on " enable loading indent file for filetype
+
+" General
+set acd " Automatically change to current buffer directory
+set backspace=start,indent,eol " Make backspace more flexible
+set backup " Make backup files
+set backupdir=/tmp "Write backup files here
+" set clipboard=unnamed "Share OS clipboard (* register)
+set clipboard=unnamedplus "Share X11 clipboard (+ register)
+set directory=/tmp "Directory for swap files
+set fileformats=unix ",mac,dos Support all file formats in this order
+set hidden " Enables changing buffers without saving
+set mouse=a " Use mouse everywhere
+" set errorbells " Make noise on error
+set wildmenu " Turn on command line completion
+" Ignore these file extensions
+set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png
+set wildmode=list:longest " Turn on wild mode huge list
+" set whichwrap=b,s,h,l,<,>,-,[,] " Everything wraps
+
+" VIM UI
+set cursorline " Highlight line that the cursor is on
+set nocursorcolumn " Don't highlight column of cursor
+set incsearch " Use the incremental search
+set laststatus=2 " Always show the status line
+set lazyredraw " Don't redraw while running macros
+set linespace=0 " Don't insert pixels between lines
+set list " Set to show special chars like eol and tabs
+set listchars=tab:>-,trail:- " show only tabs and trailing
+set nohlsearch " Don't highlight search phrases
+set nostartofline " Leave the cursors where it is
+set novisualbell " Don't blink on error
+set nonumber " Don't show line numbers
+set ruler " Show the ruler
+set report=0 " Tell us when anything is changed via :...
+set scrolloff=2 " Keep 2 lines (top/bottom) for scope
+set shortmess=aOstT " Avoid 'press a key' prompt
+set showcmd " Show command being typed
+set showmatch " Show matching bracket
+set sidescrolloff=10 " Keep 10 lines at the side
+set statusline=%F%r%h%w[%L]%y[%p%%](%l,%v)%m
+set t_Co=256 " 256 colours
+colorscheme xoria256
+
+" Text formatting and layout
+" set completeopt= " Don't use popup menu for auto completion
+set expandtab " No real tabs
+set ignorecase " Case insensitive by default
+set infercase " Case inferred by default
+set nowrap " Don't wrap lines
+set tw=0 " don't automatically wrap lines
+set colorcolumn=80,81,82 " show vertical line at tw+1 - tw+3
+set smartcase " If there are caps, go case insensitive
+set shiftwidth=4 " Auto indent amount when using cindent
+set softtabstop=4 " Tabs when hitting tab or backspace
+set tabstop=4 " Real tabs are 4 spaces
+set mousehide " Hide mouse cursor when typing
+set foldmethod=indent
+set foldlevelstart=0
+
+" move around windows easier
+map <c-a-h> <c-w>h
+map <c-a-j> <c-w>j
+map <c-a-k> <c-w>k
+map <c-a-l> <c-w>l
+ 
+let mapleader = ","
+let g:pyflakes_use_quickfix=0 " don't use quickfix window for validation & syntax
+let g:flake8_show_in_gutter='<leader>8' " Pep8 code style check
+let g:netrw_liststyle=3 " Use tree-mode as default view
+let g:netrw_browse_split=0 " Open file in previous buffer
+let g:netrw_preview=1 " preview window shown in a vertically split
+
+
+" Code completion for python
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview

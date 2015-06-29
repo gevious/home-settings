@@ -1,0 +1,100 @@
+" We use vundle for plugin management. This comes first
+" --------- VUNDLE ------------
+filetype off     " Needed for vundle. This is enabled again later
+
+" Use Vundle to manage all plugins
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Use .editorconfig file to manage per-filetype settings
+Plugin 'editorconfig/editorconfig-vim'
+" Python checking on the fly
+" Plugin 'klen/python-mode'
+" Enable rust files for vim
+Plugin 'wting/rust.vim'
+
+" All plugins must be added before the following line
+call vundle#end()           " required
+" To ignore plugin indent changes, instead use
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - list configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+"  see :h vundle for more details or wiki for FAQ
+"  Put your non-Plugin stuff after this line
+"
+"  ------------- END VUNDLE -----------------
+
+
+" Leader options
+:let mapleader = "\<space>"
+:let maplocalleader = "-"
+
+set nocompatible " Remove vi compatability
+
+" -- General options --
+syntax on                    " Allow syntax highlighting
+filetype plugin indent on    " required for vundle, but decent option anyway
+set acd                      " Automatically change to current buffer directory
+set backup                   " Make backup files
+set backupdir=/tmp           " Write backup files here
+set directory=/tmp           " Directory for swap files
+set hidden                   " Enables changing buffers without saving
+set rnu                      " Show relative numbers
+set colorcolumn=81           " Show vertical line at tw=80
+set nowrap                   " Don't wrap lines by default
+set foldmethod=indent        " Default folding on indenting
+set list                     " Show tabs/blankspace
+set listchars=tab:>-,trail:- " Show tabs/blankspace
+set mouse=a                  " Use mouse everywhere
+set wildmenu                 " Turn on command line completion
+set incsearch                " Incremental search
+set lazyredraw               " Don't redraw while running macros
+
+" -- Useful mappings --
+
+" map jk to <esc> in insert and visual mode
+:inoremap jk <esc>
+:vnoremap jk <esc>
+" Open .vimrc in a split window for easy reference
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Source .vimrc (for easy reloading)
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+" close buffer easily and go to previous or new buffer
+:nnoremap <leader>q :bd<cr>
+" make word uppercase and put cursor at the start of the next word
+:nnoremap <leader>U viwU<esc>w
+
+" disable <esc> mapping to force me to use jk
+:inoremap <esc> <nop>
+:vnoremap <esc> <nop>
+
+" command for setting local dir to current file
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" clear highlighting
+:nnoremap <leader>h :nohl<cr>
+
+" -- Abbreviations --
+" My own signature
+:iabbrev @@ Written by Nico Gevers <me@gevious.com>
+
+" -- Autocommands --
+" Fold the code within the current html tag
+augroup filetype_html
+ autocmd!
+ autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup END
+
+" -- Status line --
+:set statusline=%.20F              " Filename (max 20 characters)
+:set statusline+=\ type:%Y\        " Flags [readonly,help,preview]modified
+:set statusline+=\ [%R%H%W]%M\     " Flags [readonly,help,preview]modified
+:set statusline+=%=                " Switch to the right side
+:set statusline+=(%l/%L\ \|%3p%%)  " (current line/total lines|percent)
