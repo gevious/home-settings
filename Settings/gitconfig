@@ -1,3 +1,15 @@
 [user]
 	email = me@gevious.com
 	name = Nico Gevers
+[amazon]
+	append-cr-url = true
+	pull-request-by-default = true
+[color]
+	ui = auto
+[core]
+	pager = less -FMRiX
+	excludesfile = /home/nggevers/.config/git/excludes
+[push]
+	default = simple
+[alias]
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order

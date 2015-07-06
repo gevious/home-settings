@@ -1,19 +1,20 @@
 #!/bin/sh
+ROOT=.home-settings
 echo "Installing settings into home drive"
 echo " - Vim"
 mv -f ~/.vim ~/.vim-orig
-cp -r ./Settings/Vim ~/.vim
+ln -s ${ROOT}/Settings/Vim ~/.vim
 unlink ~/.vimrc
 ln -s .vim/vimrc ~/.vimrc
 
 echo " - i3"
 mv -f ~/.i3  ~/.i3-orig
-cp -r ./Settings/i3 ~/.i3
+ln -s ${ROOT}/Settings/i3 ~/.i3
 
 echo " - Xinitrc"
 mv -f ~/.xinitrc ~/.xinitrc-orig
-cp ./Settings/xinitrc ~/.xinitrc
+ln -s ${ROOT}/Settings/xinitrc ~/.xinitrc
 
 echo " - Git config"
-mv -f ~/.gitconfig~/.gitconfig-orig
-cp ./Settings/gitconfig ~/.gitconfig
+mv -f ~/.gitconfig ~/.gitconfig-orig
+ln -s ${ROOT}/Settings/gitconfig ~/.gitconfig
