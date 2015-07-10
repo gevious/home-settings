@@ -50,11 +50,13 @@ set foldmethod=indent        " Default folding on indenting
 set list                     " Show tabs/blankspace
 set listchars=tab:>-,trail:- " Show tabs/blankspace
 "set mouse=a                  " Use mouse everywhere
-set wildmenu                 " Turn on command line completion
+ set wildmenu                 " Turn on command line completion
 set incsearch                " Incremental search
+set ignorecase               " Ignore case in search
 set lazyredraw               " Don't redraw while running macros
 set ts=4 sw=4 sts=4          " Default tabs 4 spaces
 set expandtab                " Always use spaces instead of tabs
+set backspace=indent,eol,start " allow backspace to delete always
 
 " -- Useful mappings --
 
@@ -83,6 +85,9 @@ nnoremap <leader>h :nohl<cr>
 " Toggle NERDtree
 nnoremap <leader>d :NERDTreeToggle<cr>
 
+" Go to previous tag (ctrl-[ can't be mapped :(
+nnoremap } :pop<cr>
+
 " -- Abbreviations --
 " My own signature
 iabbrev @@ Written by Nico Gevers <me@gevious.com>
@@ -97,7 +102,7 @@ augroup END
 " Highlight cursor line
 augroup CursorLine
   au!
-  hi CursorLine cterm=bold ctermbg=black ctermfg=white " Cursor line
+  hi CursorLine cterm=bold,underline ctermbg=None
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au VimLeave,WinLeave,BufWinLeave * setlocal nocursorline
 augroup END
